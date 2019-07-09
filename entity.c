@@ -10,13 +10,13 @@ Entity *get_head(EntityList *el)
 
 EntityList *empty_el()
 {
-    el = malloc(sizeof(EntityList));
+    EntityList *el = malloc(sizeof(EntityList));
     el->head = NULL;
     el->tail = NULL;
     return el;
 }
 
-void advance_el(EntityList *el)
+void advance(EntityList *el)
 {
     if(!el->head) return;       // null case
     el->tail->next = el->head;  // after the old end is the old beginning
@@ -28,7 +28,7 @@ void advance_el(EntityList *el)
 
 EntityNode *create_en(Entity *e)
 {
-    en = malloc(sizeof(EntityNode));
+    EntityNode *en = malloc(sizeof(EntityNode));
     en->cargo = e;
     en->next = NULL;
     return en;

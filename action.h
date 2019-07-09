@@ -4,6 +4,7 @@
 typedef enum action_t {
     ACTION_MOVE,
     ACTION_WAIT,
+    ACTION_NULL,
 } action_t;
 
 typedef struct Action {

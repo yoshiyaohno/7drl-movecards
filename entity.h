@@ -35,7 +35,7 @@ typedef struct EntityList {
 
 Entity *get_head(EntityList *);     // hahahaha
 
-void advance_el(EntityList *);
+void advance(EntityList *);
 
 EntityList *empty_el();
 

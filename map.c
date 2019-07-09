@@ -14,8 +14,8 @@ Map *init_map()
             m->arr[i][j] = TILE_FLOOR;
         }
     }
-    for (i = 2, i < 5, ++i) {
-        for (j = 5, j < 9, ++j) {
+    for (i = 2; i < 5; ++i) {
+        for (j = 5; j < 9; ++j) {
             m->arr[i][j] = TILE_WALL;
         }
     }
@@ -25,7 +25,7 @@ Map *init_map()
 int is_valid(Map *m, int row, int col)
 {
     if (row < 0 || row >= m->rows || col < 0 || col >= m->cols) return 0;
-    return TILE_FLOOR == m->arr[i][j];
+    return TILE_FLOOR == m->arr[row][col];
 }
 
 void free_map(Map *m)

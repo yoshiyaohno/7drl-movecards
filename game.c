@@ -3,12 +3,15 @@
 void process(Game *game)
 {
     Action act;
-    while (act = decide_action(get_head(game->entity_list))) {
+    while (1) {
+
+        act = decide_action(game, get_head(game->entity_list));
 
         // maybe do validation
+        if (ACTION_NULL == act.type) return;
 
-        resolve_action(act, get_head(game->entity_list));
-        advance(entity_list);
+        resolve_action(game, get_head(game->entity_list), act);
+        advance(game->entity_list);
 
         // process death, etc
     }
@@ -22,7 +25,7 @@ Action decide_action(Game *game, Entity *ent)
     switch(ent->ai) {
         case AI_PLR:
             act = game->next_plr_action;
-            game->next_plr_action = NULL;
+            game->next_plr_action.type = ACTION_NULL;
             break;
         case AI_ENM:
             act.type = ACTION_WAIT;
@@ -31,20 +34,36 @@ Action decide_action(Game *game, Entity *ent)
             act.type = ACTION_WAIT;
             break;
     }
-    return act
+    return act;
 }
 
 void resolve_action(Game *game, Entity *ent, Action act)
 {
     switch(act.type) {
         case ACTION_MOVE:
-            if(is_valid(game->map), act.row, act.col) {
-                ent->row = act.row;
-                ent->col = act.col;
-            }
+            ent->row = act.row;
+            ent->col = act.col;
             break;
         case ACTION_WAIT:
             break;
     }
+}
+
+Game *init_game()
+{
+    Game *game = malloc(sizeof(Game));
+    game->next_plr_action.type = ACTION_NULL;
+    game->map = init_map();
+    game->entity_list = empty_el();
+
+    // garbage time //
+    Entity *plr = malloc(sizeof(Entity));
+    plr->ai = AI_PLR;
+    plr->row = 1;
+    plr->col = 1;
+    game->entity_list->head = create_en(plr);
+    game->entity_list->tail = game->entity_list->head;
+    game->player = plr;
+    // wig          //
 }
 
