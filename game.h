@@ -14,7 +14,7 @@ typedef struct GameState {
     // map
 } GameState;
 
-void resolve_action(Action *, Entity *);
+void resolve_action(Entity *);
 
 void process();
 
