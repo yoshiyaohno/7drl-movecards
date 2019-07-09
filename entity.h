@@ -7,7 +7,7 @@
 #include "game.h"
 
 // this is stupid
-typedef struct GameState GameState;
+typedef struct Game Game;
 
 typedef enum ai_t {
     AI_PLR,
@@ -18,22 +18,18 @@ typedef enum ai_t {
 typedef struct Entity {
     ai_t ai;
     int row, col;
-    const GameState *game;
     // inventory eventually
 } Entity;
 
-// ask the AI what to do (look at gamestate obvs)
-Action decide_action(Entity *);
+typedef struct EntityNode {
+    Entity *cargo;
+    struct EntityNode *next;
+} EntityNode;
 
 typedef struct EntityList {
     EntityNode *head;
     EntityNode *tail;
 } EntityList;
-
-typedef struct EntityNode {
-    Entity *cargo;
-    EntityNode *next;
-} EntityNode;
 
 // plus functions on the EL
 

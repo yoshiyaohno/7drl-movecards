@@ -2,7 +2,6 @@
 #define MAP_H
 
 #include <stdlib.h>
-#include <string.h>
 
 typedef enum tile_t {
     TILE_FLOOR,

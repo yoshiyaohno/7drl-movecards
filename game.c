@@ -1,8 +1,6 @@
 #include "game.h"
 
-GameState game;
-
-void process()
+void process(Game *game)
 {
     Action act;
     while (act = decide_action(get_head(game->entity_list))) {
@@ -18,7 +16,25 @@ void process()
     // when done, we know it is either the player's turn or something is bad
 }
 
-void resolve_action(Entity *ent, Action act)
+Action decide_action(Game *game, Entity *ent)
+{
+    Action act;
+    switch(ent->ai) {
+        case AI_PLR:
+            act = game->next_plr_action;
+            game->next_plr_action = NULL;
+            break;
+        case AI_ENM:
+            act.type = ACTION_WAIT;
+            break;
+        default:
+            act.type = ACTION_WAIT;
+            break;
+    }
+    return act
+}
+
+void resolve_action(Game *game, Entity *ent, Action act)
 {
     switch(act.type) {
         case ACTION_MOVE:

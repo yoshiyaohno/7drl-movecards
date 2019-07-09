@@ -1,23 +1,5 @@
 #include "entity.h"
 
-Action decide_action(Entity *ent)
-{
-    Action act;
-    switch(ent->ai) {
-        case AI_PLR:
-            act = ent->game->next_plr_action;
-            ent->game->next_plr_action = NULL;
-            break;
-        case AI_ENM:
-            act.type = ACTION_WAIT;
-            break;
-        default:
-            act.type = ACTION_WAIT;
-            break;
-    }
-    return act
-}
-
 //// ANNOYING LIST FUNCTIONS BELOW ////
 
 Entity *get_head(EntityList *el)
