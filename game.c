@@ -45,6 +45,7 @@ void resolve_action(Game *game, Entity *ent, Action act)
             ent->col = act.col;
             break;
         case ACTION_WAIT:
+        case ACTION_NULL:
             break;
     }
 }
@@ -65,5 +66,7 @@ Game *init_game()
     game->entity_list->tail = game->entity_list->head;
     game->player = plr;
     // wig          //
+
+    return game;
 }
 
