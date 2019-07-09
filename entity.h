@@ -1,6 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <stdlib.h>
+
 #include "action.h"
 #include "game.h"
 
@@ -10,6 +12,7 @@ typedef struct GameState GameState;
 typedef enum ai_t {
     AI_PLR,
     AI_ENM,
+    // more to come ...
 } ai_t;
 
 typedef struct Entity {
@@ -19,15 +22,32 @@ typedef struct Entity {
     // inventory eventually
 } Entity;
 
+// ask the AI what to do (look at gamestate obvs)
 Action decide_action(Entity *);
 
 typedef struct EntityList {
-    Entity *head;
-    Entity *tail;
+    EntityNode *head;
+    EntityNode *tail;
 } EntityList;
+
+typedef struct EntityNode {
+    Entity *cargo;
+    EntityNode *next;
+} EntityNode;
+
 // plus functions on the EL
 
-void advance(EntityList *);
+Entity *get_head(EntityList *);     // hahahaha
+
+void advance_el(EntityList *);
+
+EntityList *empty_el();
+
+//void free_el(EntityList *);
+
+//void append_el(EntityList *, Entity *);
+
+EntityNode *create_en(Entity *);
 
 #endif
 

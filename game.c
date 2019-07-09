@@ -5,11 +5,11 @@ GameState game;
 void process()
 {
     Action act;
-    while (act = decide_action(entity_list->head)) {
+    while (act = decide_action(get_head(game->entity_list))) {
 
         // maybe do validation
 
-        resolve_action(act, entity_list->head);
+        resolve_action(act, entity_list->head->cargo);
         advance(entity_list);
 
         // process death, etc
