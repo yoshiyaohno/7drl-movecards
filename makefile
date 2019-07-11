@@ -1,6 +1,6 @@
 OBJECTS = entity.o game.o map.o
-CFLAGS = -Wall
-LDFLAGS = 
+CFLAGS = -Wall -std=c99 -O2
+LDFLAGS = -lm
 CC = gcc
 
 all: $(OBJECTS)
