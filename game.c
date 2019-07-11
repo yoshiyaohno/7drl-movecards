@@ -1,4 +1,5 @@
 #include "game.h"
+#include "game_p.h"
 
 void process(Game *game)
 {

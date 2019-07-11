@@ -7,10 +7,8 @@ typedef enum tile_t {
     TILE_WALL,
 } tile_t;
 
-typedef struct Map {
-    tile_t **arr;
-    int rows, cols;
-} Map;
+// predeclare
+typedef struct Map Map;
 
 // convert a tile to printable version
 char disp_tile(tile_t);

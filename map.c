@@ -1,4 +1,5 @@
 #include "map.h"
+#include "map_p.h"
 
 Map *init_map()
 {

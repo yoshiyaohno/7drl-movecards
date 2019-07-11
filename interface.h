@@ -10,22 +10,18 @@
 // yaay
 typedef struct Game Game;
 
-typedef struct Interface {
-    const Game *game;
-    WINDOW *board;
-    WINDOW *status;
-    // later: windows for inventory, farlook, etc
-} Interface;
+// opaque pointer time
+typedef struct Interface Interface;
 
 // also clean up curses
 void free_interface(Interface *);
 
 // take a game to link to
-Interface *init_interface(const Game *);
+Interface *init_interface(Game *);
 
 // draw Game's map to the main board (uhhh also player)
 void draw_map(Interface *);
 
-// // loop doing interface stuff until you get a valid action
-// Action plr_input(Interface *);
+// loop doing interface stuff until you get a valid action
+Action plr_input(Interface *);
 

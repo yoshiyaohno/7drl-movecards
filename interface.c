@@ -1,4 +1,13 @@
 #include "interface.h"
+#include "interface_p.h"
+
+Action plr_input(Interface *face)
+{
+    face->curs_row = 0;
+    face->curs_col = 0;
+
+    curs_set(1);
+}
 
 Interface *init_interface(const Game *game)
 {
@@ -11,6 +20,7 @@ Interface *init_interface(const Game *game)
     raw();
     keypad(stdscr, TRUE);
     noecho();
+    curs_set(0);
 
     // set up windows
     getmaxyx(stdscr, term_y, term_x);

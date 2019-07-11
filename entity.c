@@ -1,4 +1,5 @@
 #include "entity.h"
+#include "entity_p.h"
 
 //// ANNOYING LIST FUNCTIONS BELOW ////
 

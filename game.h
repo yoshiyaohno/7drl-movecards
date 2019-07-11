@@ -11,12 +11,8 @@ typedef struct EntityList EntityList;
 typedef struct Entity Entity;
 typedef struct Map Map;
 
-typedef struct Game {
-    Action next_plr_action; //hmm
-    Entity *player;
-    EntityList *entity_list;
-    Map *map;
-} Game;
+// hide this one
+typedef struct Game Game;
 
 // what do you see on that tile?
 //  (later you should .. figure out how to do a better version of this)
