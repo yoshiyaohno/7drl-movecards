@@ -50,3 +50,19 @@ void free_interface(Interface *face)
     endwin();
 }
 
+input translate_input(char ch)
+{
+    switch (ch) {
+        case 'h':   return INP_W;
+        case 'j':   return INP_S;
+        case 'k':   return INP_N;
+        case 'l':   return INP_E;
+        case 'y':   return INP_NW;
+        case 'u':   return INP_NE;
+        case 'b':   return INP_SE;
+        case 'n':   return INP_SW;
+        case ' ':   return INP_OK;
+        default:    return INP_NULL;
+    }
+}
+
