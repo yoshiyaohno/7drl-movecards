@@ -8,14 +8,14 @@
 // this is stupid
 typedef struct Game Game;
 
-typedef enum ai_t {
+typedef enum ai {
     AI_PLR,
     AI_ENM,
     // more to come ...
-} ai_t;
+} ai;
 
 typedef struct Entity {
-    ai_t ai;
+    ai ai;
     int row, col;
     // inventory eventually
 } Entity;
