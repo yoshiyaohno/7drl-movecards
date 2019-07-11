@@ -26,9 +26,8 @@ void draw_map(Interface *face)
     // lmao what is error checking just stay in bounds
 
     Map *m = face->game->map; // just for brevity
-    int i, j;
-    for (i = 0; i < m->rows; ++i) {
-        for (j = 0; j < m->cols; ++j) {
+    for (int i = 0; i < m->rows; ++i) {
+        for (int j = 0; j < m->cols; ++j) {
             mvwaddch(face->board, i, j, chinspect(game, i, j));
         }
     }

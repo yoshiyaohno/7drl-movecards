@@ -7,15 +7,14 @@ Map *init_map()
     m->cols = 16;
 
     m->arr = malloc(m->rows * sizeof(char *));
-    int i, j;
-    for (i = 0; i < m->rows; ++i) {
+    for (int i = 0; i < m->rows; ++i) {
         m->arr[i] = malloc(m->cols * sizeof(char));
-        for (j = 0; j < m->cols; ++j) {
+        for (int j = 0; j < m->cols; ++j) {
             m->arr[i][j] = TILE_FLOOR;
         }
     }
-    for (i = 2; i < 5; ++i) {
-        for (j = 5; j < 9; ++j) {
+    for (int i = 2; i < 5; ++i) {
+        for (int j = 5; j < 9; ++j) {
             m->arr[i][j] = TILE_WALL;
         }
     }
@@ -39,8 +38,9 @@ int is_valid(Map *m, int row, int col)
 
 void free_map(Map *m)
 {
-    int i;
-    for(i = 0; i < m->rows; ++i) free(m->arr[i]);
+    for (int i = 0; i < m->rows; ++i) {
+        free(m->arr[i]);
+    }
     free(m->arr);
     free(m);
 }
