@@ -6,9 +6,9 @@ Map *init_map()
     m->rows = 8;
     m->cols = 16;
 
-    m->arr = malloc(m->rows * sizeof(char *));
+    m->arr = malloc(m->rows * sizeof(tile_t *));
     for (int i = 0; i < m->rows; ++i) {
-        m->arr[i] = malloc(m->cols * sizeof(char));
+        m->arr[i] = malloc(m->cols * sizeof(tile_t));
         for (int j = 0; j < m->cols; ++j) {
             m->arr[i][j] = TILE_FLOOR;
         }

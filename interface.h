@@ -1,7 +1,8 @@
 #pragma once
 
-#include <curses.h>
+#include <ncurses.h>
 #include <stdlib.h>
+#include <locale.h>
 
 #include "game.h"
 #include "map.h"
@@ -17,7 +18,7 @@ typedef struct Interface {
 } Interface;
 
 // take a game to link to
-Interface init_interface(const Game *);
+Interface *init_interface(const Game *);
 
 // draw Game's map to the main board (uhhh also player)
 void draw_map(Interface *);
