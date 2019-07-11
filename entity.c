@@ -34,3 +34,9 @@ EntityNode *create_en(Entity *e)
     return en;
 }
 
+void free_en(EntityNode *en)
+{
+    free(en->cargo);    // this will have to change with inventories
+    free(en);
+}
+

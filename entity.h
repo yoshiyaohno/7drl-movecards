@@ -44,3 +44,7 @@ EntityList *empty_el();
 
 EntityNode *create_en(Entity *);
 
+void free_en(EntityNode *);
+
+// and something to create entities, and free them (after inventory)
+

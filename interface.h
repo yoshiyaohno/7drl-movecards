@@ -17,6 +17,9 @@ typedef struct Interface {
     // later: windows for inventory, farlook, etc
 } Interface;
 
+// also clean up curses
+void free_interface(Interface *);
+
 // take a game to link to
 Interface *init_interface(const Game *);
 

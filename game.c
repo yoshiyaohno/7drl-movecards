@@ -78,3 +78,15 @@ Game *init_game()
     return game;
 }
 
+void free_game(Game *game)
+{
+    free_map(game->map);
+
+    // garbage time         //
+    free_en(game->entity_list->head);
+    free(game->entity_list);
+    // wig (end freeing EL) //
+
+    free(game);
+}
+

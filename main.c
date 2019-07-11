@@ -9,7 +9,9 @@ int main()
     draw_map(interface);
 
     getch();
-    endwin();
+
+    free_game(game);
+    free_interface(interface);
 
     return 0;
 }

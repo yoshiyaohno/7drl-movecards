@@ -23,7 +23,7 @@ Interface *init_interface(const Game *game)
 
 void draw_map(Interface *face)
 {
-    // lmao what is error checking just stay in bounds
+    // lmao what is error checking like just stay in bounds
 
     Map *m = face->game->map; // just for brevity
     for (int i = 0; i < m->rows; ++i) {
@@ -31,7 +31,12 @@ void draw_map(Interface *face)
             mvwaddch(face->board, i, j, chinspect(face->game, i, j));
         }
     }
-
     wrefresh(face->board);
+}
+
+void free_interface(Interface *face)
+{
+    free(face);
+    endwin();
 }
 

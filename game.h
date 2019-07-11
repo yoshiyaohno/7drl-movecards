@@ -33,5 +33,5 @@ void resolve_action(Game *, Entity *, Action);
 void process(Game *);
 
 Game *init_game();
-//void free_game(Game *);
+void free_game(Game *);
 
