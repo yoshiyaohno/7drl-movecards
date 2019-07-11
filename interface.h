@@ -1,5 +1,4 @@
-#ifndef INTERFACE_H
-#define INTERFACE_H
+#pragma once
 
 #include <curses.h>
 #include <stdlib.h>
@@ -25,6 +24,4 @@ void draw_map(Interface *);
 
 // // loop doing interface stuff until you get a valid action
 // Action plr_input(Interface *);
-
-#endif
 

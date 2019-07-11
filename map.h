@@ -1,5 +1,4 @@
-#ifndef MAP_H
-#define MAP_H
+#pragma once
 
 #include <stdlib.h>
 
@@ -22,6 +21,4 @@ void free_map(Map *);
 
 // (currently) in bounds and open
 int is_valid(Map *, int row, int col);
-
-#endif
 

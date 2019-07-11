@@ -27,6 +27,7 @@ char disp_tile(tile_t t)
     switch (t) {
         case TILE_FLOOR:    return '.';
         case TILE_WALL:     return '#';
+        default:            return '~';
     }
 }
 

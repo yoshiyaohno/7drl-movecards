@@ -1,5 +1,4 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#pragma once
 
 #include <stdlib.h>
 
@@ -44,6 +43,4 @@ EntityList *empty_el();
 //void append_el(EntityList *, Entity *);
 
 EntityNode *create_en(Entity *);
-
-#endif
 

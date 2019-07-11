@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include <stdlib.h>
 
@@ -35,6 +34,4 @@ void process(Game *);
 
 Game *init_game();
 //void free_game(Game *);
-
-#endif
 

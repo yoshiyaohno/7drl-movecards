@@ -1,5 +1,4 @@
-#ifndef ACTION_H
-#define ACTION_H
+#pragma once
 
 typedef enum action_t {
     ACTION_MOVE,
@@ -11,6 +10,4 @@ typedef struct Action {
     action_t type;
     int row, col;   // these will change with more action types
 } Action;
-
-#endif
 

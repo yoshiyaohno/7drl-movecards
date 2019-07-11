@@ -52,8 +52,8 @@ void resolve_action(Game *game, Entity *ent, Action act)
 
 char chinspect(Game *game, int row, int col)
 {
-    char out = disp_char(game->map->arr[row][col]);
-    if (row == game->player.row && col == game->player.col) out = '@';
+    char out = disp_tile(game->map->arr[row][col]);
+    if (row == game->player->row && col == game->player->col) out = '@';
     // uh entity checking somewhere here
     return out;
 }
