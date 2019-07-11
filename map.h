@@ -13,10 +13,14 @@ typedef struct Map {
     int rows, cols;
 } Map;
 
+// convert a tile to printable version
+char disp_tile(tile_t);
+
 Map *init_map();
 
 void free_map(Map *);
 
+// (currently) in bounds and open
 int is_valid(Map *, int row, int col);
 
 #endif

@@ -22,6 +22,14 @@ Map *init_map()
     return m;
 }
 
+char disp_tile(tile_t t)
+{
+    switch (t) {
+        case TILE_FLOOR:    return '.';
+        case TILE_WALL:     return '#';
+    }
+}
+
 int is_valid(Map *m, int row, int col)
 {
     if (row < 0 || row >= m->rows || col < 0 || col >= m->cols) return 0;

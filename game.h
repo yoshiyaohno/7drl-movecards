@@ -19,6 +19,10 @@ typedef struct Game {
     Map *map;
 } Game;
 
+// what do you see on that tile?
+//  (later you should .. figure out how to do a better version of this)
+char chinspect(Game *, int row, int col);
+
 // what will Entity do?
 Action decide_action(Game *, Entity *);
 
