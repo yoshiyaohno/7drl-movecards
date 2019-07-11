@@ -1,5 +1,5 @@
 OBJECTS = main.o entity.o game.o map.o interface.o
-CFLAGS = -Wall -std=c99
+CFLAGS = -Wall -O2
 LDFLAGS = -lm -lncurses
 CC = gcc
 
