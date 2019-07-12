@@ -18,6 +18,9 @@ typedef struct Game Game;
 //  (later you should .. figure out how to do a better version of this)
 char chinspect(const Game *, int row, int col);
 
+// ...sets next plr action
+void set_next_plr_action(Game *, Action);
+
 // what will Entity do?
 Action decide_action(Game *, Entity *);
 
@@ -25,7 +28,8 @@ Action decide_action(Game *, Entity *);
 //  *ASSUME ACTION IS VALID*
 void resolve_action(Game *, Entity *, Action);
 
-// err do the loop and all the entities and stuff haha
+// resolve actions until someone decides to do ACTION_NULL
+//  (currently only happens when it's the player's turn)
 void process(Game *);
 
 Game *init_game();

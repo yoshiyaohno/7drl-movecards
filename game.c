@@ -5,11 +5,9 @@ void process(Game *game)
 {
     Action act;
     while (1) {
-
         act = decide_action(game, get_head(game->entity_list));
 
-        // maybe do validation
-        if (ACTION_NULL == act.type) return;
+        if (!act.type) return;  // catches ACTION_NULL
 
         resolve_action(game, get_head(game->entity_list), act);
         advance(game->entity_list);
@@ -89,5 +87,10 @@ void free_game(Game *game)
     // wig (end freeing EL) //
 
     free(game);
+}
+
+void set_next_plr_action(Game *game, Action act)
+{
+    game->next_plr_action = act;
 }
 
