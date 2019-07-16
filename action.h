@@ -1,13 +1,13 @@
 #pragma once
 
-typedef enum action_t {
+typedef enum action {
     ACTION_NULL,
     ACTION_MOVE,
     ACTION_WAIT,
-} action_t;
+} action;
 
 typedef struct Action {
-    action_t type;
+    action type;
     int row, col;   // these will change with more action types
 } Action;
 
