@@ -4,6 +4,9 @@
 
 #include "action.h"
 #include "game.h"
+#include "item.h"
+
+#define MAX_INVENTORY   8
 
 // this is stupid
 typedef struct Game Game;
@@ -17,8 +20,13 @@ typedef enum ai {
 typedef struct Entity {
     ai ai;
     int row, col;
-    // inventory eventually
+    int inv_space;
+    Item *inventory[MAX_INVENTORY];
+    movetype moves[2*MAX_RADIUS+1][2*MAX_RADIUS+1];
 } Entity;
+
+// returns -1 for failure I guess hahaha
+int add_item(Entity *, Item *);
 
 typedef struct EntityNode {
     Entity *cargo;

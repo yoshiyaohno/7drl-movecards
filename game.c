@@ -69,6 +69,8 @@ Game *init_game()
     plr->ai = AI_PLR;
     plr->row = 1;
     plr->col = 1;
+    plr->inv_space = 0;
+    // add item here
     game->entity_list->head = create_en(plr);
     game->entity_list->tail = game->entity_list->head;
     game->player = plr;

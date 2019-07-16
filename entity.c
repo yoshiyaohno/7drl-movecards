@@ -1,6 +1,24 @@
 #include "entity.h"
 #include "entity_p.h"
 
+int add_item(Entity *e, Item *item)
+{
+    if (MAX_INVENTORY == e->inv_space) return -1;
+    e->inventory[e->inv_space++] = item;
+
+    // who did this loop for real
+    for (int i = 0; i < 2*MAX_RADIUS+1; ++i) {          //rows
+        for (int j = 0; j < 2*MAX_RADIUS+1; ++j) {      //cols
+            for (int k = 0; k < e->inv_space; ++k) {    //items
+                if ((e->moves[i][j] = movetype_at(e->inventory[k], i, j))) {
+                    break;  // no, that's not supposed to be ==
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 //// ANNOYING LIST FUNCTIONS BELOW ////
 
 Entity *get_head(EntityList *el)
