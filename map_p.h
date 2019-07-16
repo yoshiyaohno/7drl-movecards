@@ -3,7 +3,7 @@
 #include "map.h"
 
 typedef struct Map {
-    tile_t **arr;
+    tile **arr;
     int rows, cols;
 } Map;
 
