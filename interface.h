@@ -19,8 +19,9 @@ void free_interface(Interface *);
 // take a game to link to
 Interface *init_interface(Game *);
 
-// draw Game's map to the main board (uhhh also player)
-void draw_map(Interface *);
+void draw_interface(Interface *);
+
+void resolve_input(Interface *, int);
 
 // loop doing interface stuff until you get a valid action
 Action plr_input(Interface *);

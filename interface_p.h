@@ -23,5 +23,19 @@ typedef struct Interface {
     // later: windows for inventory, farlook, etc
 } Interface;
 
-input translate_input(char);
+void move_cursor(Interface *face);
+
+// draw Game's map to the main board (uhhh also player)
+void draw_map(Interface *);
+
+input translate_input(int);
+
+void action_selected(Interface *);
+
+int is_cursor_valid(Interface *);
+
+int abs_curs_row(Interface *);
+int abs_curs_col(Interface *);
+int rel_curs_row(Interface *);
+int rel_curs_col(Interface *);
 

@@ -6,9 +6,18 @@ int main()
     Game *game = init_game();
     Interface *interface = init_interface(game);
 
-    draw_map(interface);
+    int ch;
 
-    getch();
+    while ('q' != (ch = getch())) {
+        resolve_input(interface, ch);
+        draw_interface(interface);
+    }
+
+    // main loop:
+        // process entities
+        // draw map and interface, refresh
+        // accept input
+        // send input to interface to handle
 
     free_game(game);
     free_interface(interface);
