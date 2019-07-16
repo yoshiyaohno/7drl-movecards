@@ -9,6 +9,7 @@ int main()
     int ch;
 
     while ('q' != (ch = getch())) {
+        process(game);
         resolve_input(interface, ch);
         draw_interface(interface);
     }
