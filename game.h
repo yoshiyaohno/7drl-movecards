@@ -18,6 +18,10 @@ typedef struct Game Game;
 //  (later you should .. figure out how to do a better version of this)
 char chinspect(const Game *, int row, int col);
 
+// is this stupid ... ?
+Entity *get_player(const Game *);
+Map *get_map(const Game *);
+
 // ...sets next plr action
 void set_next_plr_action(Game *, Action);
 

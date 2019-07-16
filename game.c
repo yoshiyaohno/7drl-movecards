@@ -51,7 +51,7 @@ void resolve_action(Game *game, Entity *ent, Action act)
 
 char chinspect(const Game *game, int row, int col)
 {
-    char out = disp_tile(game->map->arr[row][col]);
+    char out = disp_tile(tile_at(game->map, row, col));
     if (row == game->player->row && col == game->player->col) out = '@';
     // uh entity checking somewhere here
     return out;
@@ -87,6 +87,16 @@ void free_game(Game *game)
     // wig (end freeing EL) //
 
     free(game);
+}
+
+Entity *get_player(const Game *game)
+{
+    return game->player;
+}
+
+Map *get_map(const Game *game)
+{
+    return game->map;
 }
 
 void set_next_plr_action(Game *game, Action act)
