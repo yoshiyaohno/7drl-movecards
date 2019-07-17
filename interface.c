@@ -2,7 +2,6 @@
 #include "interface_p.h"
 
 #define STATUS_HEIGHT   4
-#define CURSOR_RADIUS   4
 
 void draw_interface(Interface *face)
 {
@@ -15,22 +14,17 @@ void draw_interface(Interface *face)
     werase(face->status);
     box(face->status, 0, 0);
 
+    color_options(face);
+
     mvwprintw(face->status, 1, 1, "Cursor: %d %d",
                 rel_curs_row(face),
                 rel_curs_col(face));
 
-    move_cursor(face);
+    wmove(face->board, 1 + abs_curs_row(face), 1 + abs_curs_col(face));
 
     wnoutrefresh(face->status);
     wnoutrefresh(face->board);
     doupdate();
-}
-
-void move_cursor(Interface *face)
-{
-    wmove(face->board,
-        1 + face->curs_row + get_player(face->game)->row,
-        1 + face->curs_col + get_player(face->game)->col);
 }
 
 void resolve_input(Interface *face, int inp)
@@ -83,6 +77,34 @@ void resolve_input(Interface *face, int inp)
     }
 }
 
+void color_options(Interface *face)
+{
+    int sav_crow = face->curs_row;
+    int sav_ccol = face->curs_col;
+    int change_to;
+    for (int i = -MAX_RADIUS; i <= MAX_RADIUS; ++i) {
+        for (int j = -MAX_RADIUS; j <= MAX_RADIUS; ++j) {
+            face->curs_row = i;
+            face->curs_col = j;
+            wmove(face->board, 1+abs_curs_row(face), 1+abs_curs_col(face));
+            if (is_cursor_valid(face)) {
+                switch (face->player->moves[i+MAX_RADIUS][j+MAX_RADIUS]) {
+                    case MV_MOVE:
+                        change_to = PAIR_MOVE;
+                        break;
+                    default:
+                    case MV_NONE:
+                        change_to = PAIR_NONE;
+                        break;
+                }
+                wchgat(face->board, 1, A_NORMAL, change_to, NULL);
+            }
+        }
+    }
+    face->curs_row = sav_crow;
+    face->curs_col = sav_ccol;
+}
+
 void action_selected(Interface *face)
 {
     if (is_valid(get_map(face->game), abs_curs_row(face), abs_curs_col(face))) {
@@ -101,6 +123,7 @@ Interface *init_interface(Game *game)
 {
     Interface *face = malloc(sizeof(Interface));
     face->game = game;
+    face->player = get_player(game);
 
     face->curs_row = 0;
     face->curs_col = 0;
@@ -113,6 +136,15 @@ Interface *init_interface(Game *game)
     noecho();
     //curs_set(0);
     nodelay(stdscr, TRUE);
+    
+    if (FALSE == has_colors()) {
+        endwin();
+        printf("please use a terminal that supports color\n");
+        exit(1);
+    }
+    start_color();
+    init_pair(PAIR_MOVE, COLOR_WHITE, COLOR_GREEN);
+    init_pair(PAIR_NONE, COLOR_WHITE, COLOR_BLACK);
 
     // set up windows
     int term_x, term_y;
@@ -166,12 +198,12 @@ input translate_input(int ch)
 
 int abs_curs_row(Interface *face)
 {
-    return face->curs_row + get_player(face->game)->row;
+    return face->curs_row + face->player->row;
 }
 
 int abs_curs_col(Interface *face)
 {
-    return face->curs_col + get_player(face->game)->col;
+    return face->curs_col + face->player->col;
 }
 
 int rel_curs_row(Interface *face)
@@ -189,10 +221,10 @@ int is_cursor_valid(Interface *face)
 {
     int m_rows, m_cols;
     get_bounds(get_map(face->game), &m_rows, &m_cols);
-    return rel_curs_row(face) > -CURSOR_RADIUS
-        && rel_curs_row(face) <  CURSOR_RADIUS
-        && rel_curs_col(face) > -CURSOR_RADIUS
-        && rel_curs_col(face) <  CURSOR_RADIUS
+    return rel_curs_row(face) >= -MAX_RADIUS
+        && rel_curs_row(face) <=  MAX_RADIUS
+        && rel_curs_col(face) >= -MAX_RADIUS
+        && rel_curs_col(face) <=  MAX_RADIUS
         && abs_curs_row(face) >= 0
         && abs_curs_row(face) < m_rows
         && abs_curs_col(face) >= 0

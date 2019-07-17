@@ -3,7 +3,9 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <stdio.h>
 
+#include "item.h"
 #include "game.h"
 #include "map.h"
 
