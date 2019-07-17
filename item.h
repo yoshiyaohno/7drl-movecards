@@ -2,6 +2,8 @@
 
 #define MAX_RADIUS  4
 
+#include <stdlib.h>
+
 // opaque definition
 typedef struct Item Item;
 
@@ -20,6 +22,8 @@ typedef enum itemrarity {
     RAR_RARE,
     // whatever garbage
 } itemrarity;
+
+Item *basic_item_lol(); // GET RID OF THIS SOON OK
 
 char *get_item_name(Item *);
 

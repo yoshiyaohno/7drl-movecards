@@ -70,7 +70,7 @@ Game *init_game()
     plr->row = 1;
     plr->col = 1;
     plr->inv_space = 0;
-    // add item here
+    add_item(plr, basic_item_lol());
     game->entity_list->head = create_en(plr);
     game->entity_list->tail = game->entity_list->head;
     game->player = plr;
